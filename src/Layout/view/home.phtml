@@ -1,0 +1,46 @@
+<?php use Helper\ApiHelper; ?>
+<?php include('partials/header.phtml'); ?>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Nothing done yet ...
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Logs</h2>
+                    <?php
+                    $from = new DateTime();
+                    $interval = new DateInterval('P100D');
+                    $interval->invert = 1;
+                    $from->add($interval);
+                    $to = new DateTime();
+                    $logs = ApiHelper::getUserLogs('frigidor', $from, $to);
+                    $logsCleaned = [];
+                    $cacheCodes = [];
+                    foreach($logs as $log) {
+                        $logsCleaned[] = $log['CacheName'].' ('.$log['CacheCode'].') - '.substr($log['VisitDateIso'],0,10);
+                        $cacheCodes[] = $log['CacheCode'];
+                    }
+                    var_dump($logsCleaned);
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Caches</h2>
+                    <?php
+                    $caches = ApiHelper::getCaches(array_slice($cacheCodes, 0, 30));
+                    $cachesCleaned = [];
+                    foreach($caches as $cache) {
+                        $cachesCleaned[] = $cache['Name'].' ('.$cache['Code'].') - '.$cache['Difficulty'].'/'.$cache['Terrain'].' - '.$cache['CacheType']['GeocacheTypeName'];
+                    }
+                    var_dump($cachesCleaned);
+                    ?>
+                </div>
+            </div>
+        </div>
+
+<?php include('partials/footer.phtml'); ?>
+
