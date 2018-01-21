@@ -52,6 +52,15 @@
                                         <h3><a id="day-<?= $day ?>" class="link-unstyled"><?= $dayDate->format('d.m.Y') ?></a> (<?= count($cacheCodes) ?>)</h3>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Container</th>
+                                    <th>Difficulty</th>
+                                    <th>Terrain</th>
+                                    <th>Owner</th>
+                                    <th>Favo</th>
+                                </tr>
                                 <?php foreach($cacheCodes as $cacheCode): ?>
                                     <?php $cache = $caches[$cacheCode]; ?>
                                     <tr>
