@@ -1,5 +1,8 @@
 <?php
 
+use Core\InputParameters;
+use Core\PageRenderer;
+use Core\Router;
 use Helper\ConfigHelper;
 
 // SECURITY
@@ -27,7 +30,24 @@ spl_autoload_register(function($class) {
 // ENVIRONMENT
 $env = getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'dist';
 
+// INPUT PARAMETERS
+InputParameters::init();
+
 // CONFIG
 ConfigHelper::init('../src/Config/'.$env.'.php');
 
-include('../src/Layout/view/home.phtml');
+// ROUTE
+$rewrite = filter_input(INPUT_GET, 'rewrite', FILTER_SANITIZE_STRING);
+if($rewrite) {
+    $url = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_STRING);
+    $routeResult = Router::route($url);
+    if(!$routeResult) {
+        throw new Exception('No route found');
+    }
+}
+
+var_dump(InputParameters::getAll());
+
+// RUN
+PageRenderer::render(InputParameters::get('page'));
+
