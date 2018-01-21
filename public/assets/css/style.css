@@ -30,6 +30,10 @@ pre {
     margin-bottom: 10px;
 }
 
+.link-unstyled, .link-unstyled:link, .link-unstyled:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
 /***************
  * Glyphicon Spin/Rotate/Flip
  **************/

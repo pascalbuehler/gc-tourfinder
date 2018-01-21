@@ -1,13 +1,75 @@
-<?php use Helper\ApiHelper; ?>
 <?php include('partials/header.phtml'); ?>
 
         <div class="container">
+
             <div class="row">
-                <div class="col-lg-12">
-                    <h2>Logs</h2>
-                    <?php
-                    var_dump($logs);
-                    ?>
+                <div class="col-xs-12">
+                    <h2>Übersicht für <a href="https://www.geocaching.com/p/default.aspx?guid=<?= $user['PublicGuid'] ?>" target="_blank"><?= $user['UserName'] ?></a> vom <?= $input['from'] ?> bis <?= $input['to'] ?></h2>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <?php $premium = $user['MemberType']['MemberTypeId']==3 ? ' <img src="/assets/images/premium.png" alt="Premium Member" title="Premium Member" />' : ''; ?>
+                    <table>
+                        <tr>
+                            <td style="padding-right: 10px"><img src="<?= $user['AvatarUrl'] ?>" /></td>
+                            <td valign="top">
+                                <a href="https://www.geocaching.com/p/default.aspx?guid=<?= $user['PublicGuid'] ?>" target="_blank"><?= $user['UserName'].$premium ?></a><br />
+                                Versteckt: <?= $user['HideCount'] ?><br />
+                                Gefunden: <?= $user['FindCount'] ?>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Logs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($logs as $day => $cacheCodes): ?>
+                            <?php $dayDate = new DateTime($day); ?>
+                            <tr>
+                                <td><a href="#day-<?= $day ?>"><?= $dayDate->format('d.m.Y'); ?></a></td>
+                                <td><?= count($cacheCodes) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>Tagestouren</h2>
+                    <table class="table table-condensed">
+                        <tbody>
+                            <?php foreach($logs as $day => $cacheCodes): ?>
+                                <?php $dayDate = new DateTime($day); ?>
+                                <tr>
+                                    <td colspan="7">
+                                        <h3><a id="day-<?= $day ?>" class="link-unstyled"><?= $dayDate->format('d.m.Y') ?></a> (<?= count($cacheCodes) ?>)</h3>
+                                    </td>
+                                </tr>
+                                <?php foreach($cacheCodes as $cacheCode): ?>
+                                    <?php $cache = $caches[$cacheCode]; ?>
+                                    <tr>
+                                        <td><a href="<?= $cache['Url']?>" target="_blank"><?= $cache['Code'] ?></a></td>
+                                        <td>
+                                            <img src="<?= $cache['CacheType']['ImageURL'] ?>" alt="<?= $cache['CacheType']['GeocacheTypeName'] ?>" height="18px">
+                                            <?= $cache['Name'] ?>
+                                        </td>
+                                        <td><img src="https://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" /> <?= $cache['ContainerType']['ContainerTypeName'] ?></td>
+                                        <td><img src="https://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>
+                                        <td><img src="https://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" /></td>
+                                        <td><?= $cache['Owner']['UserName'] ?> (<?= $cache['Owner']['HideCount'] ?>/<?= $cache['Owner']['FindCount'] ?>)</td>
+                                        <td><img src="/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

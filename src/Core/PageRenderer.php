@@ -20,7 +20,7 @@ class PageRenderer {
         $data = $controller->run();
 
         // Layout
-        $layout = new Layout('home', $data);
+        $layout = new Layout($page, $data);
         $layout->render();
     }
 }

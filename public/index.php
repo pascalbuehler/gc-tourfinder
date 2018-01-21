@@ -46,8 +46,6 @@ if($rewrite) {
     }
 }
 
-var_dump(InputParameters::getAll());
-
 // RUN
 PageRenderer::render(InputParameters::get('page'));
 
