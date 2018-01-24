@@ -72,7 +72,7 @@
                                         <td><img src="https://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" /> <?= $cache['ContainerType']['ContainerTypeName'] ?></td>
                                         <td><img src="https://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>
                                         <td><img src="https://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" /></td>
-                                        <td><?= $cache['Owner']['UserName'] ?> (<?= $cache['Owner']['HideCount'] ?>/<?= $cache['Owner']['FindCount'] ?>)</td>
+                                        <td><a href="https://www.geocaching.com/p/default.aspx?guid=<?= $cache['Owner']['PublicGuid'] ?>" target="_blank"><?= $cache['Owner']['UserName'] ?></a> (<?= $cache['Owner']['HideCount'] ?>/<?= $cache['Owner']['FindCount'] ?>)</td>
                                         <td><img src="/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
