@@ -6,6 +6,7 @@ use Core\InputParameters;
 use DateInterval;
 use DateTime;
 use Helper\ApiHelper;
+use Helper\ConfigHelper;
 
 class ShowdaysController implements \Controller\ControllerInterface {
     public function run(): array {
@@ -30,25 +31,22 @@ class ShowdaysController implements \Controller\ControllerInterface {
                 $user = $logRaw['Finder'];
                 $first = false;
             }
-            // Check date
+            // Prepare data
             $visitDate = new DateTime(substr($logRaw['VisitDateIso'],0,10));
-            if($visitDate<$from || $visitDate>$to) {
-                continue;
-            }
-
             $logs[$visitDate->format('Y-m-d')][] = $logRaw['CacheCode'];
             $cacheCodes[] = $logRaw['CacheCode'];
         }
         ksort($logs);
 
         // Get caches
-        $cachesRaw = ApiHelper::getCaches(array_slice($cacheCodes, 0, 30));
+        $cachesRaw = ApiHelper::getCaches($cacheCodes);
         $caches = [];
         foreach($cachesRaw as $cache) {
             $caches[$cache['Code']] = $cache;
         }
-
+        
         return [
+            'config' => ConfigHelper::getConfig(),
             'input' => $input,
             'user' => $user,
             'logs' => $logs,

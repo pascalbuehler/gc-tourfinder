@@ -16,5 +16,5 @@ return [
         'IsLite' => true,
     ],
 
-    'googleApiToken' => 'AIzaSyCrvrQWoHcifd5BIdkZE2h-Q0Zvj-sSblY',
+    'googleApiToken' => 'AIzaSyAosOj7Iolove_4OswRjk-FZxidqvfJCho',
 ];
