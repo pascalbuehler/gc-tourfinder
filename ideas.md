@@ -17,3 +17,13 @@ Anzeigen welche Caches vom abgefragen Benutzer favorisiert wurden. Das blaue Her
 
 #### Zusätzlich benötigt
 * API: Abrufen der Favoriten des Benutzer
+
+### Höhenprofil
+#### Idee
+Das Höhenprofil als Graph einer Cachetour ausgeben.
+#### Zusätzlich benötigt
+* Google Maps Elevation API (https://developers.google.com/maps/documentation/elevation/intro?hl=de)
+* Irgendein Javascript Graphtool, eventuell auch gleich das von google (siehe letztes Beispiel)
+#### Probleme
+* Funktioniert nur wenn die Logreihenfolge stimmt
+* Berücksichtigt im einfachsten Fall nur die Höhenangaben der Caches. Ansonsten mit Google Maps Routing auch detaillierter möglich.
