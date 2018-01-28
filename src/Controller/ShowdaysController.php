@@ -44,7 +44,7 @@ class ShowdaysController implements \Controller\ControllerInterface {
         foreach($cachesRaw as $cache) {
             $caches[$cache['Code']] = $cache;
         }
-        
+
         return [
             'config' => ConfigHelper::getConfig(),
             'input' => $input,

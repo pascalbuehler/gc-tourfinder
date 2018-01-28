@@ -127,9 +127,9 @@ function showdaysLabel($label) {
                                             </div>
                                         <?php endif; ?>
                                     </td>
-                                    <td>
+                                    <td<?= $cache['Archived'] ? ' class="archived"' : ''?>>
                                         <img src="<?= $cache['CacheType']['ImageURL'] ?>" alt="<?= $cache['CacheType']['GeocacheTypeName'] ?>" height="16">
-                                        <?= $cache['Name'] ?>
+                                        <?= !$cache['Available'] ? '<span class="not-available">' : ''  ?><?= $cache['Name'] ?><?= !$cache['Available'] ? '</span>' : ''  ?>
                                     </td>
                                     <td><div class="nowrap"><img src="https://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" /> <?= $cache['ContainerType']['ContainerTypeName'] ?></div></td>
                                     <td><img src="https://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>

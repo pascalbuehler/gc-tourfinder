@@ -132,6 +132,12 @@ pre {
 /***************
  * Showdays
  **************/
+.archived {
+    color: #8c0b0b;
+}
+.not-available {
+    text-decoration: line-through;
+}
 #table-showdays button.button-align-h3 {
     margin-top: 20px;
 }

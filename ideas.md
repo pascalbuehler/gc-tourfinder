@@ -11,3 +11,9 @@ Zusätzlich in der Liste der Caches die betreffenden Caches markieren.
 * API: Abrufen der Statistik des Benutzer
 * Eingabefeld für den aktuellen Benutzer für den die Matrix-Statistik abgerufen wird
 
+### Favorit von Benutzer
+#### Idee
+Anzeigen welche Caches vom abgefragen Benutzer favorisiert wurden. Das blaue Herz in diesem Fall grün anzeigen.
+
+#### Zusätzlich benötigt
+* API: Abrufen der Favoriten des Benutzer
