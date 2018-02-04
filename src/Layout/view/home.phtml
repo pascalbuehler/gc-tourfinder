@@ -1,29 +1,43 @@
 <?php use Helper\ApiHelper; ?>
 <?php include('partials/header.phtml'); ?>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    Here follows the form
+    <div class="container">
+        <div class="row">
+            <form data-toggle="validator" role="form">
+                <div class="col-sm-4 form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Username" required="required">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Logs</h2>
-                    <?php
-                    var_dump($logs);
-                    ?>
+                <div class="col-sm-4 form-group">
+                    <label for="fromDatePicker">Start Datum</label>
+                    <div id="fromDatePicker">
+                        <input type="hidden" name="fromDate" data-validate="true" required="required">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Caches</h2>
-                    <?php
-                    var_dump($caches);
-                    ?>
+                <div class="col-sm-4 form-group">
+                    <label for="toDatePicker">End Datum</label>
+                    <div id="toDatePicker">
+                        <input type="hidden" name="toDate" data-validate="true" required="required">
+                    </div>
+                </div>
+                <div class="col-xs-12 form-group">
+                    <button type="submit" class="btn btn-primary">anzeigen</button>
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="well well-sm">
+                    <b>Bekannte Probleme:</b>
+                    <ul>
+                        <li>Umlaute im Username</li>
+                    </ul>
                 </div>
             </div>
         </div>
-
+    </div>
 <?php include('partials/footer.phtml'); ?>
 

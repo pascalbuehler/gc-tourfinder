@@ -15,9 +15,16 @@ function showdaysLabel($label) {
 
     <div class="container">
 
+<?php if(!count($caches)>0): ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Keine Logs für <?= $input['username'] ?> vom <?= $input['fromDate'] ?> bis <?= $input['toDate'] ?></h2>
+        </div>
+    </div>
+<?php else: ?>
         <div class="row">
             <div class="col-xs-12">
-                <h2>Übersicht für <a href="https://www.geocaching.com/p/default.aspx?guid=<?= $user['PublicGuid'] ?>" target="_blank"><?= $user['UserName'] ?></a> vom <?= $input['from'] ?> bis <?= $input['to'] ?></h2>
+                <h2>Übersicht für <a href="http://www.geocaching.com/p/default.aspx?guid=<?= $user['PublicGuid'] ?>" target="_blank"><?= $user['UserName'] ?></a> vom <?= $input['fromDate'] ?> bis <?= $input['toDate'] ?></h2>
             </div>
         </div>
 
@@ -30,7 +37,7 @@ function showdaysLabel($label) {
                         <tr>
                             <td style="padding-right: 10px"><img src="<?= $user['AvatarUrl'] ?>" /></td>
                             <td valign="top">
-                                <a href="https://www.geocaching.com/p/default.aspx?guid=<?= $user['PublicGuid'] ?>" target="_blank"><?= $user['UserName'].$premium ?></a><br />
+                                <a href="http://www.geocaching.com/p/default.aspx?guid=<?= $user['PublicGuid'] ?>" target="_blank"><?= $user['UserName'].$premium ?></a><br />
                                 Versteckt: <?= $user['HideCount'] ?><br />
                                 Gefunden: <?= $user['FindCount'] ?>
                             </td>
@@ -79,7 +86,7 @@ function showdaysLabel($label) {
                                     $minimapMarkerParameters[] = 'markers=size:mid|color:red|'.$labelString.'|'.$caches[$cacheCode]['Latitude'].','.$caches[$cacheCode]['Longitude'];
                                     $label++;
                                 }
-                                $minimapBaseUrl = 'https://maps.googleapis.com/maps/api/staticmap?';
+                                $minimapBaseUrl = 'http://maps.googleapis.com/maps/api/staticmap?';
                                 $minimapBaseUrl.= http_build_query($minimapBaseParameters);
                                 $minimapBaseUrl.= '&'.implode('&', $minimapMarkerParameters);
                                 $minimapSmallUrl = $minimapBaseUrl.'&size=240x240';
@@ -137,10 +144,10 @@ function showdaysLabel($label) {
                                         <img src="<?= $cache['CacheType']['ImageURL'] ?>" alt="<?= $cache['CacheType']['GeocacheTypeName'] ?>" height="16">
                                         <?= !$cache['Available'] ? '<span class="not-available">' : ''  ?><?= $cache['Name'] ?><?= !$cache['Available'] ? '</span>' : ''  ?>
                                     </td>
-                                    <td><div class="nowrap"><img src="https://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" /> <?= $cache['ContainerType']['ContainerTypeName'] ?></div></td>
-                                    <td><img src="https://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>
-                                    <td><img src="https://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" /></td>
-                                    <td><div class="nowrap"><a href="https://www.geocaching.com/p/default.aspx?guid=<?= $cache['Owner']['PublicGuid'] ?>" target="_blank"><?= $cache['Owner']['UserName'] ?></a></div></td>
+                                    <td><div class="nowrap"><img src="http://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" /> <?= $cache['ContainerType']['ContainerTypeName'] ?></div></td>
+                                    <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>
+                                    <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" /></td>
+                                    <td><div class="nowrap"><a href="http://www.geocaching.com/p/default.aspx?guid=<?= $cache['Owner']['PublicGuid'] ?>" target="_blank"><?= $cache['Owner']['UserName'] ?></a></div></td>
                                     <td><div class="nowrap"><img src="/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></div></td>
                                     <td>
                                         <a href="http://gc-analyzer.frigidor.ch/<?= $cache['Code'] ?>" target="_blank"><img src="/assets/images/gc-analyzer.png" alt="GC Analyzer" title="GC Analyzer" /></a>
@@ -158,7 +165,7 @@ function showdaysLabel($label) {
                 </table>
             </div>
         </div>
-
+<?php endif; ?>
     </div>
 
 <?php include('partials/footer.phtml'); ?>

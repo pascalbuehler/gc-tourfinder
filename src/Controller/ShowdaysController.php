@@ -8,19 +8,19 @@ use DateTime;
 use Helper\ApiHelper;
 use Helper\ConfigHelper;
 
-class ShowdaysController implements \Controller\ControllerInterface {
+class ShowdaysController implements ControllerInterface {
     public function run(): array {
         // Input parameters
-        $from = new DateTime(InputParameters::get('from'));
-        $to = new DateTime(InputParameters::get('to'));
+        $fromDate = new DateTime(InputParameters::get('fromDate'));
+        $toDate = new DateTime(InputParameters::get('toDate'));
         $input = array(
-            'user' => InputParameters::get('user'),
-            'from' => $from->format('d.m.Y'),
-            'to' => $to->format('d.m.Y'),
+            'username' => InputParameters::get('username'),
+            'fromDate' => $fromDate->format('d.m.Y'),
+            'toDate' => $toDate->format('d.m.Y'),
         );
 
         // Get logs
-        $logsRaw = ApiHelper::getUserLogs(InputParameters::get('user'), $from, $to);
+        $logsRaw = ApiHelper::getUserLogs(InputParameters::get('username'), $fromDate, $toDate);
         $logs = [];
         $cacheCodes = [];
         $user = [];

@@ -21,16 +21,16 @@ class Router {
         
         // Show days
         if(count($urlpieces)==3 && strlen($urlpieces[0])>0 && date_parse($urlpieces[1])!==false && date_parse($urlpieces[2])!==false) {
-            InputParameters::set('user', $urlpieces[0]);
-            InputParameters::set('from', $urlpieces[1]);
-            InputParameters::set('to', $urlpieces[2]);
+            InputParameters::set('username', $urlpieces[0]);
+            InputParameters::set('fromDate', $urlpieces[1]);
+            InputParameters::set('toDate', $urlpieces[2]);
             InputParameters::set('page', self::PAGE_SHOWDAYS);
             return true;
         }
 
         // Show day
         if(count($urlpieces)==2 && strlen($urlpieces[0])>0 && date_parse($urlpieces[1])!==false) {
-            InputParameters::set('user', $urlpieces[0]);
+            InputParameters::set('username', $urlpieces[0]);
             InputParameters::set('day', $urlpieces[1]);
             InputParameters::set('page', self::PAGE_SHOWDAY);
             return true;

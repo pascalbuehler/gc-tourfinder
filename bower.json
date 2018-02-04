@@ -1,0 +1,8 @@
+{
+  "name": "gc-tourfinder",
+  "description": "GC Tourfinder",
+  "directory": "public/vendor/",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

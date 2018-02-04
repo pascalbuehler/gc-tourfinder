@@ -86,7 +86,7 @@ class WaypointHelper {
     private static function getNewIcon($imageUrl) {
         $match = [];
         if(preg_match('&.*/([0-9]+)\.gif&', $imageUrl, $match)) {
-            $imageUrl = 'https://www.geocaching.com/map/images/mapicons/'.$match[1].'.png';
+            $imageUrl = 'http://www.geocaching.com/map/images/mapicons/'.$match[1].'.png';
         }
         return $imageUrl;
     }

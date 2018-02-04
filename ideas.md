@@ -27,3 +27,9 @@ Das Höhenprofil als Graph einer Cachetour ausgeben.
 #### Probleme
 * Funktioniert nur wenn die Logreihenfolge stimmt
 * Berücksichtigt im einfachsten Fall nur die Höhenangaben der Caches. Ansonsten mit Google Maps Routing auch detaillierter möglich.
+
+### Touren für einen Cache
+#### Idee
+Für einen ausgewählten Cache die Logs abrufen und für die Finder jeweils die Tagestour anzeigen.
+#### Zusätzlich benötigt
+* API GetCacheLogs (bei GC-Analyzer) bereits im Einsatz
