@@ -1,5 +1,5 @@
-/public/config/*
-!/public/config/dist.php
+/src/Config/*
+!/src/Config/dist.php
 /public/.htaccess
 web.config
 .idea/*
