@@ -1,7 +1,7 @@
 <?php
 include('partials/header.phtml');
 
-function showdaysLabel($label) {
+function markerLabel($label) {
     if($label<10) {
         return $label;
     }
@@ -69,7 +69,7 @@ function showdaysLabel($label) {
         <div class="row">
             <div class="col-xs-12">
                 <h2>Tagestouren</h2>
-                <table class="table table-condensed" id="table-showdays">
+                <table class="table table-condensed" id="table-cachelist">
                     <tbody>
                         <?php foreach($logs as $day => $cacheCodes): ?>
                             <?php
@@ -82,7 +82,7 @@ function showdaysLabel($label) {
                                 $minimapMarkerParameters = [];
                                 $label = 1;
                                 foreach($cacheCodes as $cacheCode) {
-                                    $labelString = showdaysLabel($label)!=='-' ? 'label:'.showdaysLabel($label) : '';
+                                    $labelString = markerLabel($label)!=='-' ? 'label:'.markerLabel($label) : '';
                                     $minimapMarkerParameters[] = 'markers=size:mid|color:red|'.$labelString.'|'.$caches[$cacheCode]['Latitude'].','.$caches[$cacheCode]['Longitude'];
                                     $label++;
                                 }
@@ -121,7 +121,7 @@ function showdaysLabel($label) {
                                 <?php $cache = $caches[$cacheCode]; ?>
                                 <?php $trExtraClass = $i==count($cacheCodes) ? 'last' : 'notlast' ?>
                                 <tr class="<?= $trExtraClass ?>">
-                                    <td><?= showdaysLabel($i) ?></td>
+                                    <td><?= markerLabel($i) ?></td>
                                     <td>
                                         <a href="<?= $cache['Url']?>" target="_blank"><?= $cache['Code'] ?></a>
                                         <?php if($i==1): ?>

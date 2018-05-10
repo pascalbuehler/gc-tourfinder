@@ -1,9 +1,8 @@
-<?php use Helper\ApiHelper; ?>
 <?php include('partials/header.phtml'); ?>
 
     <div class="container">
         <div class="row">
-            <form data-toggle="validator" role="form">
+            <form data-toggle="validator" action="/usertours" role="form">
                 <div class="col-sm-4 form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" class="form-control" id="username" placeholder="Username" required="required">
@@ -24,19 +23,6 @@
                     <button type="submit" class="btn btn-primary">anzeigen</button>
                 </div>
             </form>
-        </div>
-
-        <hr>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="well well-sm">
-                    <b>Bekannte Probleme:</b>
-                    <ul>
-                        <li>Umlaute im Username</li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 <?php include('partials/footer.phtml'); ?>

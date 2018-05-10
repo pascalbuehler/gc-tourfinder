@@ -8,7 +8,7 @@ use DateTime;
 use Helper\ApiHelper;
 use Helper\ConfigHelper;
 
-class ShowdaysController implements ControllerInterface {
+class UserToursController implements ControllerInterface {
     public function run(): array {
         // Input parameters
         $fromDate = new DateTime(InputParameters::get('fromDate'));

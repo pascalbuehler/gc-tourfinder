@@ -149,7 +149,7 @@ pre {
 }
 
 /***************
- * Showdays
+ * User tours
  **************/
 .archived {
     color: #8c0b0b;
@@ -157,12 +157,12 @@ pre {
 .not-available {
     text-decoration: line-through;
 }
-#table-showdays button.button-align-h3 {
+#table-cachelist button.button-align-h3 {
     margin-top: 20px;
 }
-#table-showdays tr.notlast td {
+#table-cachelist tr.notlast td {
     height: 31px;
 }
-#table-showdays tr.last td {
+#table-cachelist tr.last td {
     height: auto;
 }
