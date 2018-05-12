@@ -1,4 +1,5 @@
-$( function() {
+$(function() {
+    /* DATEPICKER */
     var datepickerBaseOptions = {
         format: "yyyymmdd",
         endDate: new Date(),
@@ -6,20 +7,13 @@ $( function() {
         language: "de",
         todayHighlight: true
     };
-
-    var fromDatePicker = $('#fromDatePicker');
-    fromDatePicker.datepicker(datepickerBaseOptions);
-    fromDatePicker.on('changeDate', function() {
-        $('#fromDate').val(
-            fromDatePicker.datepicker('getFormattedDate')
-        );
+    $('.datepicker-container').each(function() {
+        var hiddenField = $(this).find('input[type="hidden"]');
+        $(this).datepicker(datepickerBaseOptions);
+        $(this).on('changeDate', function() {
+            hiddenField.val(
+                $(this).datepicker('getFormattedDate')
+            );
+        });
     });
-
-    var toDatePicker = $('#toDatePicker');
-    toDatePicker.datepicker(datepickerBaseOptions);
-    toDatePicker.on('changeDate', function() {
-        $('#toDate').val(
-            toDatePicker.datepicker('getFormattedDate')
-        );
-    });
-} );
+});

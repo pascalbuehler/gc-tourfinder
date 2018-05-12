@@ -53,6 +53,17 @@ class ApiHelper {
         return $data;
     }
 
+    public static function getLogs(string $code) {
+        $config = ConfigHelper::getConfig();
+        $apiParameters = $config['apiParametersLogs'];
+
+        $apiParameters['code'] = $code;
+        $url = $config['apiEndpointLogs'].'?'.http_build_query($apiParameters);
+        $data = self::callApi($url);
+
+        return $data;
+    }
+
     private static function callApi($url) {
         $data = file_get_contents($url);
         if(!$data) {

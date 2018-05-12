@@ -143,13 +143,16 @@ pre {
 .datepicker.datepicker-inline table {
     width: 100%;
 }
-
 .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
     color: #cccccc;
 }
 
+button[type="submit"] {
+    width: 200px;
+}
+
 /***************
- * User tours
+ * Tours
  **************/
 .archived {
     color: #8c0b0b;

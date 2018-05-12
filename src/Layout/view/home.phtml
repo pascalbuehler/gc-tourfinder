@@ -1,29 +1,62 @@
 <?php include('partials/header.phtml'); ?>
 
     <div class="container">
-        <div class="row">
-            <form data-toggle="validator" action="/usertours" role="form">
-                <div class="col-sm-4 form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Username" required="required">
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label for="fromDatePicker">Start Datum</label>
-                    <div id="fromDatePicker">
-                        <input type="hidden" name="fromDate" data-validate="true" required="required">
+        <!-- UserTours -->
+        <div class="well">
+            <h3 class="nomargin-top">Touren nach Benutzer</h3>
+            <div class="row">
+                <form data-toggle="validator" action="/usertours" role="form">
+                    <div class="col-sm-4 form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required="required">
                     </div>
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label for="toDatePicker">End Datum</label>
-                    <div id="toDatePicker">
-                        <input type="hidden" name="toDate" data-validate="true" required="required">
+                    <div class="col-sm-4 form-group">
+                        <label for="userToursFromDate">Start Datum</label>
+                        <div id="userToursFromDate" class="datepicker-container">
+                            <input type="hidden" name="fromDate" data-validate="true" required="required">
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 form-group">
-                    <button type="submit" class="btn btn-primary">anzeigen</button>
-                </div>
-            </form>
+                    <div class="col-sm-4 form-group">
+                        <label for="userToursToDate">End Datum</label>
+                        <div id="userToursToDate" class="datepicker-container">
+                            <input type="hidden" name="toDate" data-validate="true" required="required">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 form-group text-center">
+                        <button type="submit" class="btn btn-primary">anzeigen</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <!-- CacheTours -->
+        <div class="well">
+            <h3 class="nomargin-top">Touren nach Cache</h3>
+            <div class="row">
+                <form data-toggle="validator" action="/cachetours" role="form">
+                    <div class="col-sm-4 form-group">
+                        <label for="username">GC Code</label>
+                        <input type="text" name="code" class="form-control" id="username" placeholder="GCXXXXX" required="required">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="cacheToursFromDate">Start Datum</label>
+                        <div id="cacheToursFromDate" class="datepicker-container">
+                            <input type="hidden" name="fromDate" data-validate="true" required="required">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="cacheToursToDate">End Datum</label>
+                        <div id="cacheToursToDate" class="datepicker-container">
+                            <input type="hidden" name="toDate" data-validate="true" required="required">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 form-group text-center">
+                        <button type="submit" class="btn btn-primary">anzeigen</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 <?php include('partials/footer.phtml'); ?>
 

@@ -16,5 +16,11 @@ return [
         'IsLite' => true,
     ],
 
+    'apiEndpointLogs' => '',
+    'apiParametersLogs' => [
+        'token' => '',
+        'code' => ''
+    ],
+
     'googleApiToken' => '',
 ];

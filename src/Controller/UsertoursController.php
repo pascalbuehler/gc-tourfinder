@@ -3,7 +3,6 @@
 namespace Controller;
 
 use Core\InputParameters;
-use DateInterval;
 use DateTime;
 use Helper\ApiHelper;
 use Helper\ConfigHelper;
@@ -12,7 +11,7 @@ class UsertoursController implements ControllerInterface {
     public function run(): array {
         // Input parameters
         $fromDate = new DateTime(InputParameters::get('fromDate'));
-        $toDate = new DateTime(InputParameters::get('toDate'));
+        $toDate = InputParameters::get('toDate')!==false ? new DateTime(InputParameters::get('toDate')) : $fromDate;
         $input = array(
             'username' => InputParameters::get('username'),
             'fromDate' => $fromDate->format('d.m.Y'),
