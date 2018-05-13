@@ -25,7 +25,7 @@ class Router {
         // Cache tours
         if(isset($urlpieces[0]) && $urlpieces[0]==self::PAGE_CACHETOURS) {
             $input = InputParameters::getAll();
-            if(isset($input['code']) && isset($input['fromDate'])) {
+            if(isset($input['code'])) {
                 InputParameters::set('page', self::PAGE_CACHETOURS);
                 return true;
             }

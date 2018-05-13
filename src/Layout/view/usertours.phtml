@@ -105,7 +105,7 @@ function markerLabel($label) {
                                 </td>
                             </tr>
                             <tr>
-                                <th>#</th>
+                                <th class="text-center" >#</th>
                                 <th>Code</th>
                                 <th>Name</th>
                                 <th>Container</th>
@@ -121,7 +121,7 @@ function markerLabel($label) {
                                 <?php $cache = $caches[$cacheCode]; ?>
                                 <?php $trExtraClass = $i==count($cacheCodes) ? 'last' : 'notlast' ?>
                                 <tr class="<?= $trExtraClass ?>">
-                                    <td><?= markerLabel($i) ?></td>
+                                    <td class="text-center" ><?= markerLabel($i) ?></td>
                                     <td>
                                         <a href="<?= $cache['Url']?>" target="_blank"><?= $cache['Code'] ?></a>
                                         <?php if($i==1): ?>
@@ -151,6 +151,7 @@ function markerLabel($label) {
                                     <td><div class="nowrap"><img src="/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></div></td>
                                     <td>
                                         <a href="http://gc-analyzer.frigidor.ch/<?= $cache['Code'] ?>" target="_blank"><img src="/assets/images/gc-analyzer.png" alt="GC Analyzer" title="GC Analyzer" /></a>
+                                        <a href="/cachetours?code=<?= $cache['Code'] ?>"><img src="/assets/images/gc-tourfinder.png" alt="GC Tourfinder" title="GC Tourfinder" /></a>
                                     </td>
                                     <?php if($i==1): ?>
                                         <td class="visible-lg" rowspan="<?= count($cacheCodes) ?>">

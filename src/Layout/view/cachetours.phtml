@@ -1,0 +1,113 @@
+<?php
+include('partials/header.phtml');
+
+function markerLabel($label) {
+    if($label<10) {
+        return $label;
+    }
+    if($label<36) {
+        return chr($label-10+ord('A'));
+    }
+    return '-';
+}
+function markerColor($percent) {
+    $r = max(0, min(255, 2*256*$percent/100));
+    $g = max(0, min(255, 2*256*(100-$percent)/100));
+    $b = 0;
+
+    return str_pad(dechex($r), 2, '0', STR_PAD_LEFT).
+        str_pad(dechex($g), 2, '0', STR_PAD_LEFT).
+        str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
+}
+
+// Create minimap url (google static map)
+$minimapBaseParameters = [
+    'format' => 'png',
+    'maptype' => 'terrain',
+    'key' => $config['googleApiToken'],
+];
+$minimapMarkerParameters = [];
+$label = 1;
+foreach($caches as $cache) {
+    $labelString = markerLabel($label)!=='-' ? 'label:'.markerLabel($label) : '';
+    $markerColor = markerColor($cacheCounts[$cache['Code']]['countRelative']);
+    $minimapMarkerParameters[] = 'markers=size:mid|color:0x'.$markerColor.'|'.$labelString.'|'.$cache['Latitude'].','.$cache['Longitude'];
+    $label++;
+}
+$minimapBaseUrl = 'http://maps.googleapis.com/maps/api/staticmap?';
+$minimapBaseUrl.= http_build_query($minimapBaseParameters);
+$minimapBaseUrl.= '&'.implode('&', $minimapMarkerParameters);
+$minimapLargeUrl = str_replace('size:mid|', '', $minimapBaseUrl).'&size=640x640';
+?>
+
+    <div class="container">
+
+<?php if(!count($caches)>0): ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Keine Logs für <?= $code ?></h2>
+        </div>
+    </div>
+<?php else: ?>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Touren für <?= $caches[$code]['Code'] ?> <img src="<?= $caches[$code]['CacheType']['ImageURL'] ?>" alt="<?= $caches[$code]['CacheType']['GeocacheTypeName'] ?>" height="32">&nbsp;<a href="<?= $caches[$code]['Url']?>" target="_blank"><?= !$caches[$code]['Available'] ? '<span class="not-available">' : ''  ?><?= $caches[$code]['Name'] ?><?= !$caches[$code]['Available'] ? '</span>' : ''  ?></a></h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>Karte</h3>
+                <img class="cachetourimg img-responsive" src="<?= $minimapLargeUrl ?>" width="640" height="640">
+            </div>
+
+            <div class="col-xs-12">
+                <h3>Liste</h3>
+                <table class="table table-condensed" id="table-cachelist">
+                    <tbody>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Code</th>
+                            <th>Funde</th>
+                            <th>Name</th>
+                            <th>Container</th>
+                            <th>Difficulty</th>
+                            <th>Terrain</th>
+                            <th>Owner</th>
+                            <th>Favo</th>
+                            <th>Tools</th>
+                        </tr>
+                        <?php $i = 1; ?>
+                        <?php foreach($caches as $cache): ?>
+                            <?php $trExtraClass = $i==count($caches) ? 'last' : 'notlast' ?>
+                            <tr class="<?= $trExtraClass ?>">
+                                <td class="text-center" style="background-color:#<?= markerColor($cacheCounts[$cache['Code']]['countRelative']) ?>"><?= markerLabel($i) ?></td>
+                                <td>
+                                    <a href="<?= $cache['Url']?>" target="_blank"><?= $cache['Code'] ?></a>
+                                </td>
+                                <td><?= $cacheCounts[$cache['Code']]['countAbsolute'] ?> (<?= $cacheCounts[$cache['Code']]['countRelative'] ?>&#37;)</td>
+                                <td<?= $cache['Archived'] ? ' class="archived"' : ''?>>
+                                    <img src="<?= $cache['CacheType']['ImageURL'] ?>" alt="<?= $cache['CacheType']['GeocacheTypeName'] ?>" height="16">
+                                    <?= !$cache['Available'] ? '<span class="not-available">' : ''  ?><?= $cache['Name'] ?><?= !$cache['Available'] ? '</span>' : ''  ?>
+                                </td>
+                                <td><div class="nowrap"><img src="http://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" /> <?= $cache['ContainerType']['ContainerTypeName'] ?></div></td>
+                                <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>
+                                <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" /></td>
+                                <td><div class="nowrap"><a href="http://www.geocaching.com/p/default.aspx?guid=<?= $cache['Owner']['PublicGuid'] ?>" target="_blank"><?= $cache['Owner']['UserName'] ?></a></div></td>
+                                <td><div class="nowrap"><img src="/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></div></td>
+                                <td>
+                                    <a href="http://gc-analyzer.frigidor.ch/<?= $cache['Code'] ?>" target="_blank"><img src="/assets/images/gc-analyzer.png" alt="GC Analyzer" title="GC Analyzer" /></a>
+                                    <a href="/cachetours?code=<?= $cache['Code'] ?>"><img src="/assets/images/gc-tourfinder.png" alt="GC Tourfinder" title="GC Tourfinder" /></a>
+                                </td>
+                            </tr>
+                            <?php $i++ ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<?php endif; ?>
+    </div>
+
+<?php include('partials/footer.phtml'); ?>
+
