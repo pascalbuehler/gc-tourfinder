@@ -32,7 +32,7 @@ function markerLabel($label) {
             <div class="row">
 
                 <div class="col-lg-4 col-sm-6 col-xs-12">
-                    <?php $premium = $user['MemberType']['MemberTypeId']==3 ? ' <img src="/assets/images/premium.png" alt="Premium Member" title="Premium Member" />' : ''; ?>
+                    <?php $premium = $user['MemberType']['MemberTypeId']==3 ? ' <img src="'.$config['baseUrl'].'/assets/images/premium.png" alt="Premium Member" title="Premium Member" />' : ''; ?>
                     <table>
                         <tr>
                             <td style="padding-right: 10px"><img src="<?= $user['AvatarUrl'] ?>" /></td>
@@ -148,10 +148,10 @@ function markerLabel($label) {
                                     <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>
                                     <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" /></td>
                                     <td><div class="nowrap"><a href="http://www.geocaching.com/p/default.aspx?guid=<?= $cache['Owner']['PublicGuid'] ?>" target="_blank"><?= $cache['Owner']['UserName'] ?></a></div></td>
-                                    <td><div class="nowrap"><img src="/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></div></td>
+                                    <td><div class="nowrap"><img src="<?= $config['baseUrl'] ?>/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></div></td>
                                     <td>
-                                        <a href="http://gc-analyzer.frigidor.ch/<?= $cache['Code'] ?>" target="_blank"><img src="/assets/images/gc-analyzer.png" alt="GC Analyzer" title="GC Analyzer" /></a>
-                                        <a href="/cachetours?code=<?= $cache['Code'] ?>"><img src="/assets/images/gc-tourfinder.png" alt="GC Tourfinder" title="GC Tourfinder" /></a>
+                                        <a href="http://gc-analyzer.frigidor.ch/<?= $cache['Code'] ?>" target="_blank"><img src="<?= $config['baseUrl'] ?>/assets/images/gc-analyzer.png" alt="GC Analyzer" title="GC Analyzer" /></a>
+                                        <a href="<?= $config['baseUrl'] ?>/cachetours?code=<?= $cache['Code'] ?>"><img src="<?= $config['baseUrl'] ?>/assets/images/gc-tourfinder.png" alt="GC Tourfinder" title="GC Tourfinder" /></a>
                                     </td>
                                     <?php if($i==1): ?>
                                         <td class="visible-lg" rowspan="<?= count($cacheCodes) ?>">

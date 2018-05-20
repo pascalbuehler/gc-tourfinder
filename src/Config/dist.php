@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'baseUrl' => '',
+
     'apiEndpointUserLogs' => '',
     'apiParametersUserLogs' => [
         'token' => '',
