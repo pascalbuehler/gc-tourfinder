@@ -99,7 +99,7 @@ function markerLabel($label) {
                                     <h3><a id="day-<?= $day ?>" class="link-unstyled"><?= $dayDate->format('d.m.Y') ?></a> (<?= count($cacheCodes) ?>)</h3>
                                 </td>
                                 <td colspan="7">
-                                    <div class="hidden-lg">
+                                    <div class="hidden-lg hidden-print">
                                         <button type="button" class="btn btn-primary pull-right button-align-h3" data-toggle="modal" data-target=".minimap-<?= $day ?>">Map</button>
                                     </div>
                                 </td>
@@ -133,7 +133,7 @@ function markerLabel($label) {
                                                             <h4 class="modal-title"><?= $user['UserName'] ?> / <?= $dayDate->format('d.m.Y') ?></h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <img class="img-responsive" src="<?= $minimapLargeUrl ?>">
+                                                            <img class="img-responsive" src="<?= $minimapLargeUrl ?>" width="640" height="640" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,23 +144,28 @@ function markerLabel($label) {
                                         <img src="<?= $cache['CacheType']['ImageURL'] ?>" alt="<?= $cache['CacheType']['GeocacheTypeName'] ?>" height="16">
                                         <?= !$cache['Available'] ? '<span class="not-available">' : ''  ?><?= $cache['Name'] ?><?= !$cache['Available'] ? '</span>' : ''  ?>
                                     </td>
-                                    <td><div class="nowrap"><img src="http://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" /> <?= $cache['ContainerType']['ContainerTypeName'] ?></div></td>
-                                    <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" /></td>
-                                    <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" /></td>
+                                    <td><div class="nowrap"><img src="http://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" width="45" height="13" alt="<?= $cache['ContainerType']['ContainerTypeName'] ?>"/> <?= $cache['ContainerType']['ContainerTypeName'] ?></div></td>
+                                    <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Difficulty']) ?>.gif" width="61" height="13" alt="<?= $cache['Difficulty'] ?>"/></td>
+                                    <td><img src="http://www.geocaching.com/images/stars/stars<?= str_replace('.', '_', $cache['Terrain']) ?>.gif" width="61" height="13" alt="<?= $cache['Terrain'] ?>"/></td>
                                     <td><div class="nowrap"><a href="http://www.geocaching.com/p/default.aspx?guid=<?= $cache['Owner']['PublicGuid'] ?>" target="_blank"><?= $cache['Owner']['UserName'] ?></a></div></td>
-                                    <td><div class="nowrap"><img src="<?= $config['baseUrl'] ?>/assets/images/favorite.png" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></div></td>
+                                    <td><div class="nowrap"><img src="<?= $config['baseUrl'] ?>/assets/images/favorite.png" width="16" height="16" alt="Favorites" title="Favorites" /> <?= $cache['FavoritePoints'] ?></div></td>
                                     <td>
-                                        <a href="http://gc-analyzer.frigidor.ch/<?= $cache['Code'] ?>" target="_blank"><img src="<?= $config['baseUrl'] ?>/assets/images/gc-analyzer.png" alt="GC Analyzer" title="GC Analyzer" /></a>
-                                        <a href="<?= $config['baseUrl'] ?>/cachetours?code=<?= $cache['Code'] ?>"><img src="<?= $config['baseUrl'] ?>/assets/images/gc-tourfinder.png" alt="GC Tourfinder" title="GC Tourfinder" /></a>
+                                        <a href="http://gc-analyzer.frigidor.ch/<?= $cache['Code'] ?>" target="_blank"><img src="<?= $config['baseUrl'] ?>/assets/images/gc-analyzer.png" width="16" height="16" alt="GC Analyzer" title="GC Analyzer" /></a>
+                                        <a href="<?= $config['baseUrl'] ?>/cachetours?code=<?= $cache['Code'] ?>"><img src="<?= $config['baseUrl'] ?>/assets/images/gc-tourfinder.png" width="16" height="16" alt="GC Tourfinder" title="GC Tourfinder" /></a>
                                     </td>
                                     <?php if($i==1): ?>
                                         <td class="visible-lg" rowspan="<?= count($cacheCodes) ?>">
-                                            <a href="#" data-toggle="modal" data-target=".minimap-<?= $day ?>"><img src="<?= $minimapSmallUrl ?>" width="240" height="240"></a>
+                                            <a href="#" data-toggle="modal" data-target=".minimap-<?= $day ?>"><img src="<?= $minimapSmallUrl ?>" width="240" height="240" alt=""></a>
                                         </td>
                                     <?php endif; ?>
                                 </tr>
                                 <?php $i++ ?>
                             <?php endforeach; ?>
+                            <tr>
+                                <td colspan="10" class="text-center print">
+                                    <img class="visible-print-inline-block" src="<?= $minimapLargeUrl ?>" width="640" height="640" alt="">
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
