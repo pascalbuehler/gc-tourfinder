@@ -170,8 +170,11 @@ button[type="submit"] {
     height: auto;
 }
 #table-cachelist tr td.print {
-    padding: 0 0 10px 0;
+    padding: 0;
     border-top: 0;
+}
+#table-cachelist tr td img.print {
+    padding-bottom: 5px;
 }
 
 /***************
