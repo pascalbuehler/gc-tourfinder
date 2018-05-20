@@ -141,7 +141,7 @@ function markerLabel($label) {
                                         <?php endif; ?>
                                     </td>
                                     <td<?= $cache['Archived'] ? ' class="archived"' : ''?>>
-                                        <img src="<?= $cache['CacheType']['ImageURL'] ?>" alt="<?= $cache['CacheType']['GeocacheTypeName'] ?>" height="16">
+                                        <img src="<?= $cache['CacheType']['ImageURL'] ?>" alt="<?= $cache['CacheType']['GeocacheTypeName'] ?>" width="16" height="16" alt="">
                                         <?= !$cache['Available'] ? '<span class="not-available">' : ''  ?><?= $cache['Name'] ?><?= !$cache['Available'] ? '</span>' : ''  ?>
                                     </td>
                                     <td><div class="nowrap"><img src="http://www.geocaching.com/images/icons/container/<?= str_replace(' ', '_', $cache['ContainerType']['ContainerTypeName'])?>.gif" width="45" height="13" alt="<?= $cache['ContainerType']['ContainerTypeName'] ?>"/> <?= $cache['ContainerType']['ContainerTypeName'] ?></div></td>
