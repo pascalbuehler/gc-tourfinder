@@ -171,7 +171,6 @@ button[type="submit"] {
 }
 #table-cachelist tr td.print {
     padding: 0;
-    border-top: 0;
 }
 #table-cachelist tr td img.print {
     padding-bottom: 5px;

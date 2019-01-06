@@ -114,7 +114,7 @@ function markerLabel($label) {
                                 <th>Owner</th>
                                 <th>Favo</th>
                                 <th>Tools</th>
-                                <th class="visible-lg">Map</th>
+                                <th class="visible-lg hidden-print">Map</th>
                             </tr>
                             <?php $i = 1; ?>
                             <?php foreach($cacheCodes as $cacheCode): ?>
@@ -154,16 +154,16 @@ function markerLabel($label) {
                                         <a href="<?= $config['baseUrl'] ?>/cachetours?code=<?= $cache['Code'] ?>"><img src="<?= $config['baseUrl'] ?>/assets/images/gc-tourfinder.png" width="16" height="16" alt="GC Tourfinder" title="GC Tourfinder" /></a>
                                     </td>
                                     <?php if($i==1): ?>
-                                        <td class="visible-lg" rowspan="<?= count($cacheCodes) ?>">
+                                        <td class="visible-lg hidden-print" rowspan="<?= count($cacheCodes) ?>">
                                             <a href="#" data-toggle="modal" data-target=".minimap-<?= $day ?>"><img src="<?= $minimapSmallUrl ?>" width="240" height="240" alt=""></a>
                                         </td>
                                     <?php endif; ?>
                                 </tr>
                                 <?php $i++ ?>
                             <?php endforeach; ?>
-                            <tr>
-                                <td colspan="10" class="text-center print">
-                                    <img class="visible-print-inline-block print" src="<?= $minimapSmallUrl ?>" width="240" height="240" alt="">
+                            <tr class="visible-print">
+                                <td colspan="10" class="text-center">
+                                    <img class="visible-print-inline-block print" src="<?= $minimapLargeUrl ?>" width="640" height="640" alt="">
                                 </td>
                             </tr>
                         <?php endforeach; ?>

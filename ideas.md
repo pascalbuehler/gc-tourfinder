@@ -28,8 +28,12 @@ Das Höhenprofil als Graph einer Cachetour ausgeben.
 * Funktioniert nur wenn die Logreihenfolge stimmt
 * Berücksichtigt im einfachsten Fall nur die Höhenangaben der Caches. Ansonsten mit Google Maps Routing auch detaillierter möglich.
 
-### Touren für einen Cache
+### PDF versenden
 #### Idee
-Für einen ausgewählten Cache die Logs abrufen und für die Finder jeweils die Tagestour anzeigen.
-#### Zusätzlich benötigt
-* API GetCacheLogs (bei GC-Analyzer) bereits im Einsatz
+Wöchentlich (mit Cron) ein E-Mail versenden mit einem PDF der Caches die von jemandem letzte Woche gemacht wurden.
+#### Probleme
+* Nicht geloggte Caches erscheinen natürlich nicht (eventuell voletzte Woche versenden?)
+#### Proof of concept
+* Print-Mode ist eingebaut
+* wkhtmltopdf --print-media-type "http://gc-tourfinder.frigidor.ch/usertours?username=mfbaden&fromDate=20181221&toDate=20181228" abc.pdf
+
